@@ -50,6 +50,7 @@
     "jsdom": "^30.0.1",
     "license-checker-rseidelsohn": "^5.0.1",
     "oxlint": "^1.79.0",
+    "png-to-ico": "^3.0.2",
     "postcss": "^8.5.28",
     "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",

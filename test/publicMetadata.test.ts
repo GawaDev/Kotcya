@@ -20,7 +20,8 @@ describe('公開メタデータ', () => {
   it('HTMLに正規URLと共有用メタデータを設定する', () => {
     const document = new DOMParser().parseFromString(read('index.html'), 'text/html')
 
-    expect(document.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('/favicon.png')
+    expect(document.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('/favicon.ico?v=2')
+    expect(readFileSync(resolve(root, 'public/favicon.ico')).byteLength).toBeGreaterThan(0)
     expect(document.querySelector('link[rel="manifest"]')?.getAttribute('href')).toBe('/manifest.webmanifest')
     expect(document.querySelector('link[rel="apple-touch-icon"]')?.getAttribute('href')).toBe('/apple-touch-icon.png')
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(canonicalUrl)

@@ -1,5 +1,6 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import pngToIco from 'png-to-ico';
 import sharp from 'sharp';
 
 const icon = await readFile(new URL('../public/favicon.svg', import.meta.url));
@@ -17,6 +18,11 @@ await Promise.all([
     .png()
     .toFile(output('pwa-maskable-512.png')),
 ]);
+
+const faviconIco = await pngToIco(await Promise.all(
+  [16, 32, 48].map((size) => sharp(icon).resize(size, size).png().toBuffer()),
+));
+await writeFile(output('favicon.ico'), faviconIco);
 
 const encodedIcon = icon.toString('base64');
 const social = Buffer.from(`
