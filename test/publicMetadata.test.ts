@@ -21,6 +21,7 @@ describe('公開メタデータ', () => {
     const document = new DOMParser().parseFromString(read('index.html'), 'text/html')
 
     expect(document.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('/favicon.svg')
+    expect(document.querySelector('link[rel="manifest"]')?.getAttribute('href')).toBe('/site.webmanifest')
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(canonicalUrl)
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBeTruthy()
     expect(document.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe(canonicalUrl)
@@ -31,5 +32,12 @@ describe('公開メタデータ', () => {
     expect(read('public/robots.txt')).toContain(`${canonicalUrl}sitemap.xml`)
     expect(read('public/sitemap.xml')).toContain(`<loc>${canonicalUrl}</loc>`)
     expect(read('public/llms.txt')).toContain(`Canonical application: ${canonicalUrl}`)
+  })
+
+  it('RenderをWeb Serviceとして構成する', () => {
+    const blueprint = read('render.yaml')
+    expect(blueprint).toContain('runtime: node')
+    expect(blueprint).toContain('healthCheckPath: /health')
+    expect(read('server.mjs')).toContain("url.pathname === '/health'")
   })
 })

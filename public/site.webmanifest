@@ -1,0 +1,17 @@
+{
+  "name": "Kotcya",
+  "short_name": "Kotcya",
+  "description": "画像の加工、解析、来歴確認を行う画像ワークベンチ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#347e4c",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

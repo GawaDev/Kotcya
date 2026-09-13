@@ -43,6 +43,10 @@ npm run build
 
 生成物は `dist/` に出力されます。
 
+## 公開
+
+RenderではNode.jsのWeb Serviceとして動作します。`server.mjs`が`dist/`を配信し、`/health`で稼働状態と公開メタデータを返します。構成は`render.yaml`に定義しています。
+
 ## 文書
 
 利用方法と対応範囲は[文書索引](docs/INDEX.md)にまとめています。変更への参加方法は[CONTRIBUTING.md](CONTRIBUTING.md)、変更履歴は[CHANGELOG.md](CHANGELOG.md)、公開前の確認結果は[公開前監査](AUDIT.md)を参照してください。
