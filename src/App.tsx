@@ -137,6 +137,8 @@ type SaveFileHandle = {
 
 export default function App() {
   const isPhone = useMediaQuery('(max-width: 560px)');
+  const isNarrow = useMediaQuery('(max-width: 768px)');
+  const headerHeight = isPhone ? 46 : isNarrow ? 44 : 40;
   const [sourceUrl, setSourceUrl] = useState<string | null>(null);
   const [originalUrl, setOriginalUrl] = useState<string | null>(null);
   const [fileName, setFileName] = useState('image');
@@ -418,7 +420,7 @@ export default function App() {
   );
 
   return (
-    <AppShell className="imageApp" mode="static" header={{ height: 40 }} padding={0}>
+    <AppShell className="imageApp" mode="static" header={{ height: headerHeight }} padding={0}>
       <AppShell.Header className="appHeader">
         <Container fluid h="100%" px="sm">
           <ProductHeader
@@ -439,7 +441,9 @@ export default function App() {
                 </ActionIcon>
               </Tooltip>
               {sourceUrl && (
-                <Button size="compact-xs" leftSection={<IconDownload size={14} />} onClick={download}>名前を付けて保存</Button>
+                <Button size={isNarrow ? 'sm' : 'compact-xs'} leftSection={<IconDownload size={14} />} onClick={download}>
+                  {isNarrow ? '保存' : '名前を付けて保存'}
+                </Button>
               )}
               </>
             }
@@ -462,8 +466,11 @@ export default function App() {
         <Container fluid p={0} h="100%">
             <div className="workspaceHost">
               <SegmentedControl
+                key={mobilePane}
                 className="mobilePaneSwitch"
+                aria-label="ツール、プレビュー、画像情報の切替"
                 fullWidth
+                transitionDuration={0}
                 value={mobilePane}
                 onChange={(value) => setMobilePane(value as 'settings' | 'preview' | 'information')}
                 data={[
@@ -472,10 +479,10 @@ export default function App() {
                   { label: '情報', value: 'information' },
                 ]}
               />
-            <Splitter className="editorSplitter" orientation="horizontal" h="100%" resetOnDoubleClick withHandle={!isPhone}>
-              <Splitter.Pane defaultSize={80} min={50} style={{ display: isPhone && mobilePane === 'settings' ? 'none' : undefined }}>
-              <Splitter className="mainSplitter" orientation="horizontal" h="100%" resetOnDoubleClick withHandle={!isPhone}>
-              <Splitter.Pane defaultSize={75} min={45} style={{ display: isPhone && mobilePane !== 'preview' ? 'none' : undefined }}>
+            <Splitter className="editorSplitter" orientation="horizontal" h="100%" resetOnDoubleClick withHandle={!isNarrow}>
+              <Splitter.Pane defaultSize={80} min={50} style={{ display: isNarrow && mobilePane === 'settings' ? 'none' : undefined }}>
+              <Splitter className="mainSplitter" orientation="horizontal" h="100%" resetOnDoubleClick withHandle={!isNarrow}>
+              <Splitter.Pane defaultSize={75} min={45} style={{ display: isNarrow && mobilePane !== 'preview' ? 'none' : undefined }}>
               <Paper className="canvasPanel">
                 <PaneHeader
                   title="プレビュー"
@@ -543,7 +550,7 @@ export default function App() {
                 ) : previewStage}
               </Paper>
               </Splitter.Pane>
-              <Splitter.Pane defaultSize={25} min="260px" max="45%" style={{ display: isPhone && mobilePane !== 'information' ? 'none' : undefined }}>
+              <Splitter.Pane defaultSize={25} min="260px" max="45%" style={{ display: isNarrow && mobilePane !== 'information' ? 'none' : undefined }}>
                 <Paper className="infoPane">
                   <PaneHeader title="画像情報" />
                   <ImageInfoPanel
@@ -559,7 +566,7 @@ export default function App() {
               </Splitter>
               </Splitter.Pane>
 
-              <Splitter.Pane defaultSize={20} min="260px" max="40%" style={{ display: isPhone && mobilePane !== 'settings' ? 'none' : undefined }}>
+              <Splitter.Pane defaultSize={20} min="260px" max="40%" style={{ display: isNarrow && mobilePane !== 'settings' ? 'none' : undefined }}>
               <Paper className="controlPanel">
                 <PaneHeader title="ツール" />
                 <Tabs value="edit" className="controlTabs controlTabsSingle">

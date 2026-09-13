@@ -20,12 +20,14 @@ describe('公開メタデータ', () => {
   it('HTMLに正規URLと共有用メタデータを設定する', () => {
     const document = new DOMParser().parseFromString(read('index.html'), 'text/html')
 
-    expect(document.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('/favicon.svg')
-    expect(document.querySelector('link[rel="manifest"]')?.getAttribute('href')).toBe('/site.webmanifest')
+    expect(document.querySelector('link[rel="icon"]')?.getAttribute('href')).toBe('/favicon.png')
+    expect(document.querySelector('link[rel="manifest"]')?.getAttribute('href')).toBe('/manifest.webmanifest')
+    expect(document.querySelector('link[rel="apple-touch-icon"]')?.getAttribute('href')).toBe('/apple-touch-icon.png')
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(canonicalUrl)
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content')).toBeTruthy()
     expect(document.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe(canonicalUrl)
-    expect(document.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe('summary')
+    expect(document.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe('summary_large_image')
+    expect(document.querySelector('meta[property="og:image"]')?.getAttribute('content')).toBe(`${canonicalUrl}og.png`)
   })
 
   it('検索エンジン向けファイルに正規URLを使用する', () => {

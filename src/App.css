@@ -8,20 +8,42 @@
 
 .imageApp,
 .imageApp.mantine-AppShell-root {
-  height: 100dvh;
-  max-height: 100dvh;
+  height: 100vh;
+  max-height: 100vh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   padding: var(--app-safe-top) var(--app-safe-right) var(--app-safe-bottom) var(--app-safe-left);
   overflow: hidden;
 }
 
+@supports (height: 100svh) {
+  .imageApp,
+  .imageApp.mantine-AppShell-root {
+    height: 100svh;
+    max-height: 100svh;
+  }
+}
+
+@supports (height: 100dvh) {
+  .imageApp,
+  .imageApp.mantine-AppShell-root {
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+}
+
 .appHeader {
+  position: static;
+  flex: 0 0 auto;
   background: var(--mantine-color-body);
   border-bottom: 1px solid var(--mantine-color-default-border);
 }
 
 .appMain {
-  height: 100%;
+  height: auto !important;
+  flex: 1 1 auto;
   min-height: 0 !important;
   overflow: hidden;
   background: var(--mantine-color-body);
@@ -59,12 +81,16 @@
 }
 
 .workspaceHost {
-  height: calc(100dvh - 40px);
+  height: 100%;
   min-height: 0;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
 .editorSplitter {
+  flex: 1 1 auto;
+  min-height: 0;
   direction: rtl;
 }
 
@@ -105,6 +131,13 @@
   border-radius: 0;
 }
 
+.canvasPanel,
+.infoPane {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
 .controlPanel {
   width: 100%;
   height: 100%;
@@ -141,7 +174,8 @@
 }
 
 .checkerboard {
-  height: calc(100dvh - 110px);
+  height: auto;
+  flex: 1 1 auto;
   min-height: 0;
   display: grid;
   padding: 32px;
@@ -158,12 +192,15 @@
 }
 
 .infoPanel {
-  height: calc(100dvh - 76px);
+  height: auto;
+  min-height: 0;
+  flex: 1 1 auto;
   overflow: auto;
 }
 
 .poppedPreviewPlaceholder {
-  height: calc(100dvh - 110px);
+  height: auto;
+  flex: 1 1 auto;
   display: grid;
   align-content: center;
   justify-items: center;
@@ -175,22 +212,24 @@
 .popoutPreview {
   width: 100vw;
   height: 100dvh;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background: var(--mantine-color-body);
 }
 
 .popoutPreview .checkerboard {
-  height: calc(100dvh - 36px);
+  height: auto;
 }
 
 .popoutPreview .previewImage {
-  max-height: calc(100dvh - 76px);
+  max-height: 100%;
 }
 
 .previewImage {
   display: block;
   max-width: 100%;
-  max-height: calc(100dvh - 150px);
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -294,7 +333,7 @@
   border-top: 1px solid var(--mantine-color-default-border);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .imageApp .mantine-ActionIcon-root,
   .imageApp .mantine-Button-root,
   .imageApp .mantine-Switch-track {
@@ -315,14 +354,14 @@
   }
 
   .previewImage {
-    max-height: calc(100dvh - 190px);
+    max-height: 100%;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .workspaceHost {
     display: flex;
-    height: calc(100dvh - 40px);
+    height: 100%;
     flex-direction: column;
   }
 
@@ -365,11 +404,11 @@
   }
 
   .checkerboard {
-    height: calc(100dvh - 150px);
+    height: auto;
   }
 
   .infoPanel {
-    height: calc(100dvh - 116px);
+    height: auto;
   }
 
   .metadataGrid {
@@ -383,12 +422,28 @@
   --help-line: var(--mantine-color-default-border);
   --help-nav-bg: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));
   display: flex !important;
-  height: 100dvh !important;
-  max-height: 100dvh !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  box-sizing: border-box;
+  padding: var(--app-safe-top) var(--app-safe-right) var(--app-safe-bottom) var(--app-safe-left);
   flex-direction: column;
   overflow: hidden !important;
   border: 0;
   box-shadow: none !important;
+}
+
+@supports (height: 100svh) {
+  .kotcyaHelpModalContent {
+    height: 100svh !important;
+    max-height: 100svh !important;
+  }
+}
+
+@supports (height: 100dvh) {
+  .kotcyaHelpModalContent {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
 }
 
 .kotcyaHelpModalHeader {
@@ -601,6 +656,16 @@
 }
 
 @media (max-width: 720px) {
+  .appChromeTitle,
+  .appChromeVersion {
+    display: none;
+  }
+
+  .appChromeDocument {
+    max-width: 34vw;
+    padding-inline: 2px;
+  }
+
   .kotcyaHelpLayout {
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);

@@ -11,6 +11,7 @@ Kotcyaは、主に次の第三者ソフトウェアを使用しています。
 - exifr — MIT License
 - marked — MIT License
 - DOMPurify — Apache License 2.0 or Mozilla Public License 2.0
+- Workbox — MIT License
 
 人物の切り抜きでは、Googleが配布する[MediaPipe Selfie Segmenterモデル](https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/1/selfie_segmenter.tflite)と、jsDelivrが配布するMediaPipe WASMを実行時に取得します。MediaPipe Tasks VisionとモデルはApache License 2.0です。MediaPipeの利用には[利用規約](https://developers.google.com/edge/mediapipe/legal/tos)と[プライバシー情報](https://developers.google.com/edge/mediapipe/solutions/tasks)も適用されます。
 

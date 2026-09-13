@@ -11,6 +11,7 @@ Kotcyaは、画像の加工、解析、メタデータ確認をブラウザで�
 - PNG、JPEG、WebPへの保存
 - EXIF、XMP、IPTC、GPS、寸法、主要色、SHA-256の確認
 - C2PAコンテンツ認証情報と署名の確認
+- PWAとしてのインストールと、基本画面のオフライン起動
 
 C2PAの確認は、画像に付与された来歴情報と署名を表示するものです。画像全般がAIで生成されたかどうかを判定する機能ではありません。
 
@@ -32,6 +33,7 @@ Node.js 22を使用します。
 ```bash
 npm run lint
 npm run test:run
+npm run test:e2e
 npm run license:check
 ```
 

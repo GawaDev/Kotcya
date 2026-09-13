@@ -18,11 +18,14 @@
 - Blob URLの解放、非同期解析の競合、入力容量と画像寸法の制限確認
 - アイコン操作、エラー通知、モバイル操作対象のアクセシビリティ確認
 - ヘルプHTMLのサニタイズとRender Web Serviceの配信ヘッダー、ヘルスチェックの確認
+- 390×844のタッチ環境で画像読込、3画面切替、縦スクロール、生成情報、ヘルプへの到達を実操作
+- PWAのマニフェスト、Service Worker、オフライン再起動を実ブラウザで確認
 
 ## 結果
 
 - `npm run lint`: 成功
 - `npm run test:run`: 19件成功
+- `npm run test:e2e`: 2件成功
 - `npm run build`: 成功
 - `npm audit --omit=dev --audit-level=high`: 脆弱性0件
 - `npm run license:check`: 成功
@@ -42,6 +45,8 @@
 - Content Security Policyと基本的な配信ヘッダーを追加
 - ヘルプHTMLをDOMPurifyでサニタイズ
 - C2PA確認を一般的なAI画像判定と誤認させる文言を除去
+- PWAアイコン、マスク対応アイコン、Apple Touchアイコン、OG画像、実画面スクリーンショットを追加
+- 画面高をフレックス構成へ変更し、768px以下を1画面切替式に統一
 
 ## 既知の制約
 

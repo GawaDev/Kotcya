@@ -6,7 +6,9 @@ import '@mantine/dropzone/styles.css';
 import { theme } from './theme';
 import App from './App';
 import './index.css';
+import { initPwaUpdate } from './pwaUpdate';
 
+initPwaUpdate();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MantineProvider theme={theme} defaultColorScheme="auto">
