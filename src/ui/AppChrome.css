@@ -1,0 +1,73 @@
+.appChromeMark {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  color: #fff;
+  background: var(--mantine-primary-color-filled);
+  border-radius: 6px;
+  place-items: center;
+}
+
+.appChromeTitle {
+  flex: 0 0 auto;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.appChromeVersion {
+  flex: 0 0 auto;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.appChromeDocument {
+  min-width: 0;
+  max-width: min(28vw, 280px);
+  padding: 1px 8px 1px 6px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+}
+
+.appChromePaneHeader {
+  height: 36px;
+  min-height: 36px;
+  overflow: hidden;
+  background: var(--mantine-color-gray-0);
+  border-bottom: 1px solid var(--mantine-color-gray-3);
+}
+
+.appChromeToolbar {
+  min-height: 34px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: light-dark(#f6f8fa, var(--mantine-color-dark-7));
+  border-bottom: 1px solid var(--mantine-color-gray-2);
+  scrollbar-width: thin;
+}
+
+.appChromeToolbar > * {
+  flex: 0 0 auto;
+}
+
+[data-mantine-color-scheme="dark"] .appChromePaneHeader {
+  background: var(--mantine-color-dark-7);
+  border-color: var(--mantine-color-dark-4);
+}
+
+@media (max-width: 768px) {
+  .appChromePaneHeader,
+  .appChromeToolbar {
+    min-height: 40px;
+  }
+
+  .appChromePaneHeader {
+    height: 40px;
+  }
+
+  .appChromeToolbar .mantine-ActionIcon-root,
+  .appChromePaneHeader .mantine-ActionIcon-root {
+    width: 40px;
+    height: 40px;
+  }
+}

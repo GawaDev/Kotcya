@@ -1,0 +1,10 @@
+# Kotcya
+
+> ブラウザで画像を加工、解析し、メタデータとC2PAコンテンツ認証情報を確認する画像ワークベンチ。
+
+- Canonical application: https://kotcya.onrender.com/
+- Source: https://github.com/GawaDev/Kotcya
+- Documentation: https://github.com/GawaDev/Kotcya/tree/main/docs
+- License: https://github.com/GawaDev/Kotcya/blob/main/LICENSE
+
+C2PAの確認は、画像全般がAIで生成されたかどうかを判定する機能ではありません。
