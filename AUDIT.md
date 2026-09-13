@@ -22,7 +22,7 @@
 ## 結果
 
 - `npm run lint`: 成功
-- `npm run test:run`: 18件成功
+- `npm run test:run`: 19件成功
 - `npm run build`: 成功
 - `npm audit --omit=dev --audit-level=high`: 脆弱性0件
 - `npm run license:check`: 成功
